@@ -7,7 +7,7 @@ class Books extends react.Component{
     return(
         <>
             {this.props.booksArray.map(book => {
-                <Book book={book}/>
+                return <Book book={book}/>;
             })}
         </>
     );
