@@ -6,8 +6,8 @@ class Books extends react.Component{
   render(){
     return(
         <>
-            {this.props.booksArray.map(book => {
-                return <Book book={book}/>;
+            {this.props.booksArray.map((book, idx) => {
+                return <Book book={book} key={idx}/>;
             })}
         </>
     );
