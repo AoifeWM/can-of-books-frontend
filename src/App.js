@@ -24,10 +24,10 @@ class App extends react.Component{
     await this.setState({user: exampleUser});
 
     // USE THIS URL FOR DEPLOYS:
-    // const url = `https://can-of-books-backend-code301.herokuapp.com/books?email=${this.state.user.email}`;
+    const url = `https://can-of-books-backend-code301.herokuapp.com/books?email=${this.state.user.email}`;
 
     // USE THIS URL WHEN TESTING ON THE LOCAL MACHINE:
-    const url = `http://localhost:3001/books?email=${this.state.user.email}`;
+    // const url = `http://localhost:3001/books?email=${this.state.user.email}`;
 
     console.log(`URL: ${url}`);
 
