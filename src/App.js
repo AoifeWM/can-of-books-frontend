@@ -54,11 +54,11 @@ class App extends react.Component{
   render(){
     return(
       <>
-        <p>The site is working</p>
+        {/* <p>The site is working</p> */}
         <Header/>
         <Main booksArray={this.state.booksArray}/>
         <Footer/>
-        <p>The site is working part 2</p>
+        {/* <p>The site is working part 2</p> */}
       </>
     );
   }
