@@ -1,7 +1,7 @@
-import './App.css';
-import react from 'react';
+// import './App.css';
+import React from 'react';
 
-class Book extends react.Component{
+class Book extends React.Component{
   render(){
     return(
         <>
