@@ -1,11 +1,12 @@
-import './App.css';
-import react from 'react';
+// import './App.css';
+import React from 'react';
 import axios from 'axios';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-
-class App extends react.Component{
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import { BrowserRouter } from "react-router-dom";
+class App extends React.Component{
   constructor(
     props
   ){
@@ -24,10 +25,10 @@ class App extends react.Component{
     await this.setState({user: exampleUser});
 
     // USE THIS URL FOR DEPLOYS:
-    const url = `https://can-of-books-backend-code301.herokuapp.com/books?email=${this.state.user.email}`;
+    // const url = `https://can-of-books-backend-code301.herokuapp.com/books?email=${this.state.user.email}`;
 
     // USE THIS URL WHEN TESTING ON THE LOCAL MACHINE:
-    // const url = `http://localhost:3001/books?email=${this.state.user.email}`;
+    const url = `http://localhost:3001/books?email=${this.state.user.email}`;
 
     console.log(`URL: ${url}`);
 
