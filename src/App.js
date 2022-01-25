@@ -60,6 +60,7 @@ class App extends React.Component{
         <Main booksArray={this.state.booksArray}/>
         <Footer/>
         {/* <p>The site is working part 2</p> */}
+        {/* TODO //* ROUTER is MISSING  */}
       </>
     );
   }
