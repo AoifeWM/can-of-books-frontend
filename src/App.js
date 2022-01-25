@@ -5,7 +5,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 class App extends React.Component{
   constructor(
     props
@@ -56,10 +56,11 @@ class App extends React.Component{
     return(
       <>
         {/* <p>The site is working</p> */}
-        <Header/>
+        <Header user={{email: '321AWM'}}/>
         <Main booksArray={this.state.booksArray}/>
         <Footer/>
         {/* <p>The site is working part 2</p> */}
+        {/* TODO //* ROUTER is MISSING  */}
       </>
     );
   }
