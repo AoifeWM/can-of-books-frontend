@@ -11,9 +11,10 @@ class Header extends React.Component{
       <Navbar.Brand>My Favorite Books</Navbar.Brand>
         {this.props.user.email &&
           <>
-            <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
+            <Link to="/" className="nav-link">Home</Link>
+            {/* <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
             <NavItem><Link to="/profile" className="nav-link">Profile</Link></NavItem>
-            <LogoutButton onLogout={this.props.onLogout} />
+            <LogoutButton onLogout={this.props.onLogout} /> */}
           </>
         }
         {!this.props.user && (
