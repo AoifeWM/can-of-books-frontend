@@ -1,11 +1,23 @@
-import React,{ Component } from "react";
+import { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 class Profile extends Component {
 
   render() {
-    /* TODO: render information about logged in user */
-    /* STRETCH TODO: if no logged in user then redirect home */
-    return <p>Profile page coming soon</p>
+
+    if (this.props.user) {
+
+      return (
+        <div>
+          <h2>{this.props.user.username}</h2>
+          <p>{this.props.user.email}</p>
+        </div>
+      );
+
+    } else {
+
+      return <Redirect to="/" />
+    }
   }
 };
 
