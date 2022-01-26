@@ -1,13 +1,34 @@
-
-   
-import React,{ Component } from "react";
+import React from "react";
+import { Component } from "react";
 
 class LoginForm extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      email: ''
+    };
+  }
+
+  changeHandler = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  submitHandler = (event) => {
+    event.preventDefault();
+    this.props.onLogin(this.state);
+  }
+
   render() {
-    /* TODO: create a simple login form that collects username and and email, and lets parent component know when form has been submitted */
     return (
-      <p>LoginForm Coming Soon</p>
+      <form onSubmit={this.submitHandler}>
+        <input type="text" placeholder="name" name="username" onChange={this.changeHandler} value={this.state.username} />
+        <input type="text" placeholder="email" name="email" onChange={this.changeHandler} value={this.state.email} />
+        <button>OK</button>
+      </form>
     );
   }
 };
