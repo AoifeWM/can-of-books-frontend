@@ -3,6 +3,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 import AddABookButton from './AddABookButton';
+import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/button';
 
 
@@ -70,9 +71,9 @@ class BestBooks extends React.Component {
           <Carousel>
             {this.state.books.map((book, idx) => (
               <Carousel.Item key={idx}>
-                <img
+                <Image
                   className="d-block w-100 h-50"
-                  src="/book.jpg"
+                  src="https://th.bing.com/th/id/R.8ab3c22a0e690d4dd01b287bc12505ae?rik=vevJMxg2RITAOg&riu=http%3a%2f%2fimg02.deviantart.net%2f06ed%2fi%2f2011%2f166%2f2%2f8%2fneutral_grey_radial_wallpaper_by_flambedude-d3iynlc.png&ehk=VCYGGT%2bYLnxer9sHYD9Pazd47b2MxdZPXBwd8NRmYKU%3d&risl=&pid=ImgRaw&r=0"
                   alt={book.name}
                 />
                 <Carousel.Caption>

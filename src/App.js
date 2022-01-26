@@ -4,6 +4,7 @@ import Login from './Login';
 import Profile from './Profile';
 import BestBooks from './BestBooks.js';
 import Footer from './Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter as Router,
   Switch,

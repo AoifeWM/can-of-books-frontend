@@ -1,19 +1,25 @@
+
 import React from 'react';
-// import { Navbar, NavItem } from 'react-bootstrap';
-import Navbar from 'react-bootstrap/Navbar';
-// import {Link} from 'react-router-dom';
-// import LogoutButton from './LogoutButton';
+import Logout from './LogoutButton';
+import { Navbar, NavItem } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import './Header.css';
 
-class Header extends React.Component{
-  render(){
-    return(
+class Header extends React.Component {
+  render() {
+    return (
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand>Code Fellows</Navbar.Brand>
-    </Navbar>
+        <Navbar.Brand>My Favorite Books</Navbar.Brand>
+        {this.props.user && (
+          <>
+            <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
+            <NavItem><Link to="/profile" className="nav-link">Profile</Link></NavItem>
+            <Logout onLogout={this.props.onLogout} />
+          </>
+        )}
+      </Navbar>
     )
   }
 }
-
 
 export default Header;
