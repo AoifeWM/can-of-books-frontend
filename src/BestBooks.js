@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Carousel } from 'react-bootstrap';
 import AddABookButton from './AddABookButton';
 import Image from 'react-bootstrap/Image';
-import Button from 'react-bootstrap/button';
+import Button from 'react-bootstrap/Button';
 
 
 class BestBooks extends React.Component {
