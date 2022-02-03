@@ -5,13 +5,20 @@ import { Carousel } from 'react-bootstrap';
 import AddABookButton from './AddABookButton';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
+import UpdateBookForm from './UpdateBookForm';
 
+
+const SERVER = process.env.REACT_APP_SERVER;
+
+// const SERVER = 'http://localhost:3001'
 
 class BestBooks extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      books: []
+      books: [],
+      showUpdateModal: false,
+      currentBook: null
     }
   }
 
@@ -22,7 +29,7 @@ class BestBooks extends React.Component {
       const config = {
         params: { email: this.props.user.email },
         method: 'get',
-        baseURL: process.env.REACT_APP_SERVER,
+        baseURL: SERVER,
         url: '/books'
       };
 
@@ -52,11 +59,39 @@ class BestBooks extends React.Component {
     const config = {
       params: { email: this.props.user.email },
       method: 'delete',
-      baseURL: process.env.REACT_APP_SERVER,
+      baseURL: SERVER,
       url: `/books/${id}`
     }
     axios(config);
 
+  }
+
+  onClose = async () => {
+    this.setState({
+      showUpdateModal: false
+    })
+  }
+
+  handleUpdate = async bookToBeUpdated => {
+    console.log(bookToBeUpdated._id, "^ BOOK TO BE UPDATED ID");
+    console.log(bookToBeUpdated);
+    console.log(`Email: ${this.props.user.email}`);
+    try {
+      await axios.put(`${SERVER}/books/${bookToBeUpdated._id}?email=${this.props.user.email}`, bookToBeUpdated);
+      const updatedBooks = this.state.books.map(existingBook => {
+        if (existingBook._id === bookToBeUpdated._id) {
+          return bookToBeUpdated;
+        } else {
+          return existingBook;
+        }
+      });
+      this.setState({
+        books: updatedBooks,
+        currentBook: null
+      })
+    } catch (error) {
+      console.error(error);
+    }
   }
 
 
@@ -66,7 +101,9 @@ class BestBooks extends React.Component {
         <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
 
         <AddABookButton user={this.props.user} updateBookArray={this.updateBookArray} />
-
+        {this.state.currentBook && 
+            <UpdateBookForm show={this.state.showUpdateModal} handleUpdate={this.handleUpdate} onClose={this.onClose} book={this.state.currentBook}/>
+        }
         {this.state.books.length ? (
           <Carousel>
             {this.state.books.map((book, idx) => (
@@ -74,13 +111,14 @@ class BestBooks extends React.Component {
                 <Image
                   className="d-block w-100 h-50"
                   src="https://th.bing.com/th/id/R.8ab3c22a0e690d4dd01b287bc12505ae?rik=vevJMxg2RITAOg&riu=http%3a%2f%2fimg02.deviantart.net%2f06ed%2fi%2f2011%2f166%2f2%2f8%2fneutral_grey_radial_wallpaper_by_flambedude-d3iynlc.png&ehk=VCYGGT%2bYLnxer9sHYD9Pazd47b2MxdZPXBwd8NRmYKU%3d&risl=&pid=ImgRaw&r=0"
-                  alt={book.name}
+                  alt={book.title}
                 />
                 <Carousel.Caption>
-                  <h3>{book.name}</h3>
+                  <h2>{book.title}</h2>
                   <p>{book.description}</p>
                   <p>{book.status}</p>
                   <Button onClick={() => this.removeBook(book)}>Delete</Button>
+                  <Button onClick={() => this.setState({showUpdateModal: true, currentBook: book})}>Update</Button>
                 </Carousel.Caption>
               </Carousel.Item>
             ))}
