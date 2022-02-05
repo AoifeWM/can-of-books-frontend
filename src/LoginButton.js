@@ -1,29 +1,45 @@
-import { Component } from 'react'
-import LoginForm from './LoginForm'
+// import { Component } from 'react'
+// import LoginForm from './LoginForm'
 
-export default class LoginButton extends Component {
+// export default class LoginButton extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false
-    }
-  }
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       show: false
+//     }
+//   }
 
-  clickHandler = () => {
-    this.setState({ show: !this.state.show });
-  };
+//   clickHandler = () => {
+//     this.setState({ show: !this.state.show });
+//   };
 
-  render() {
+//   render() {
 
-    if (this.state.show) {
-      return <LoginForm onLogin={this.props.onLogin} />
-    } else {
-      return (
-        <button onClick={this.clickHandler}>
-          Log In
-        </button>
-      )
-    }
-  }
+//     if (this.state.show) {
+//       return <LoginForm onLogin={this.props.onLogin} />
+//     } else {
+//       return (
+//         <button onClick={this.clickHandler}>
+//           Log In
+//         </button>
+//       )
+//     }
+//   }
+// }
+
+import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+
+function LoginButton() {
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+  } = useAuth0();
+
+  return !isAuthenticated && (
+    <button onClick={loginWithRedirect}>Log in</button>
+  );
 }
+
+export default LoginButton;
